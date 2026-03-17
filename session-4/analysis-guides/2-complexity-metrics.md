@@ -168,20 +168,6 @@ function analyzeFunctionComplexity(filePath) {
       });
     }
 
-    // Exported functions
-    if (node.type === 'ExportNamedDeclaration' && node.declaration) {
-      if (node.declaration.type === 'FunctionDeclaration' && node.declaration.id) {
-        const complexity = calculateComplexity(node.declaration.body);
-        functions.push({
-          name: node.declaration.id.name,
-          file: fileName,
-          complexity,
-          line: node.declaration.loc.start.line,
-          exported: true
-        });
-      }
-    }
-
     // Arrow functions assigned to exports
     if (node.type === 'ExportNamedDeclaration' &&
         node.declaration?.type === 'VariableDeclaration') {
