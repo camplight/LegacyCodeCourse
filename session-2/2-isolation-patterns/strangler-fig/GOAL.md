@@ -74,21 +74,6 @@ The example demonstrates a phased migration:
 - Delete legacy `DiscountCalculator`
 - The fig has replaced the tree!
 
-## Exercise
-
-Your task: Implement a feature flag system in the `PricingRouter` that allows you to control the percentage of legacy customers routed to the new system.
-
-Add a method:
-```typescript
-setNewSystemPercentage(percentage: number): void
-```
-
-Modify the routing logic to:
-- Route the specified percentage of legacy customers to the new system
-- Use a deterministic method (e.g., hash customer ID) so the same customer always gets the same system
-
-Test your implementation with different percentages (0%, 50%, 100%).
-
 ## Further Reading
 
 - "Working Effectively with Legacy Code" by Michael Feathers, Chapter 13
