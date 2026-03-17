@@ -90,7 +90,25 @@ class OrderProcessor {
 const processor = new OrderProcessor(new MockNotifier());
 ```
 
+## Exercise
+
+Your task: Add a new notification type - **Slack notifications** - for internal team alerts when orders exceed £1000.
+
+Requirements:
+1. Create `SlackNotificationService` implementing `INotificationService`
+2. Modify `NotificationFactory` to return a composite that includes:
+   - Email (all orders)
+   - SMS (orders > £500)
+   - Slack (orders > £1000)
+3. Write tests for your new service using mocks
+4. **Constraint**: Do NOT modify the `OrderProcessor.processOrder()` method
+
+Hints:
+- The interface is your seam - implement it
+- Use `CompositeNotificationService` to combine multiple notifications
+- Test using a mock Slack service
+
 ## Further Reading
 
 - "Working Effectively with Legacy Code" by Michael Feathers, Chapter 4: "The Seam Model"
-- Martin Fowler's ["Dependency Injection" article](https://martinfowler.com/articles/injection.html)
+- Martin Fowler's "Dependency Injection" article
