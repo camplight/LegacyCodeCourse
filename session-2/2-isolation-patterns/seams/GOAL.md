@@ -111,4 +111,4 @@ Hints:
 ## Further Reading
 
 - "Working Effectively with Legacy Code" by Michael Feathers, Chapter 4: "The Seam Model"
-- Martin Fowler's "Dependency Injection" article
+- Martin Fowler's ["Dependency Injection" article](https://martinfowler.com/articles/injection.html)
