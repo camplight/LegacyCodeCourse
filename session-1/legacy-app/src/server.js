@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 
 var app = express();
-var PORT = 3000; // TODO: make configurable
+var PORT = process.env.PORT || 3000; // TODO: make configurable
 
 // middleware setup - order matters!
 var logLevel = process.env.LOG_LEVEL || 'dev';
