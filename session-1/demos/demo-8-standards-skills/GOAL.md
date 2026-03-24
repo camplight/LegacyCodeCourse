@@ -54,6 +54,8 @@ Use this prompt:
 
 > Based on your analysis, generate a CLAUDE.md or coding standards file that describes these conventions as rules. This should be descriptive (what the codebase does now), not aspirational (what it should do). The goal is to ensure consistency with the existing patterns when making changes.
 
+> Which of these instructions can be deterministically applied with claude code hooks?
+
 ### Step 4: Discussion
 
 Review the generated standards document with the audience:

@@ -24,13 +24,16 @@ npm run seed
 
 Use this prompt (or similar):
 
+`draw me an Entity Relationship Diagram of the database`
+
 ```
-Generate a script called `generate-erd.js` that reads the SQLite database schema and outputs a Mermaid ERD diagram. It should:
+Generate a script called `generate-erd.js` that reads the SQLite database schema and outputs an ERD diagram in DBML format so I can paste it into dbdiagram.io.
+It should:
 - Connect to `bugbase.db` using better-sqlite3
 - Read table definitions from `sqlite_master`
 - Use `PRAGMA table_info(tablename)` to get columns and types
 - Use `PRAGMA foreign_key_list(tablename)` to get foreign key relationships
-- Output valid Mermaid `erDiagram` syntax to stdout
+- Output valid DBML syntax to stdout
 - Include column names and types in each entity
 - Show all relationships with proper cardinality
 ```
@@ -46,8 +49,9 @@ Copy the Mermaid output.
 ### Step 3: Render the ERD
 
 Paste the output into one of:
+- [dbdiagram.io](https://dbdiagram.io)
 - [mermaid.live](https://mermaid.live)
-- VS Code with Mermaid extension
+- VS Code or Zed with Mermaid extension
 - Any Mermaid renderer
 
 The diagram should show:

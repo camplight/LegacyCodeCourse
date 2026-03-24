@@ -19,9 +19,17 @@ npm install
 
 ## Steps
 
+### Step 0: Clone the Repo: https://github.com/camplight/LegacyCodeCourse
+
+Click through the app for a little while.
+
 ### Step 1: Ask Claude Code to Generate the Tool
 
 Use this prompt (or similar):
+
+Първото нещо, когато се сблъскам с нов проект, е да се запитам "има ли тестове и какво е качеството им".
+
+Започваме с лошият пример: `Are there any tests and are they any good?`
 
 ```
 Generate a script called `evaluate-tests.js` that analyzes the test suite of this project. It should:
