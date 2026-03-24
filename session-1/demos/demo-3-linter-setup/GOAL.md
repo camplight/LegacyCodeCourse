@@ -21,7 +21,9 @@ npm install
 
 Use this prompt:
 
-> Add ESLint to this project with a reasonable configuration for a Node.js/Express app that uses both JavaScript and TypeScript. Don't fix any violations yet — just set up the config.
+```
+Add ESLint to this project with a reasonable configuration for a Node.js/Express app that uses both JavaScript and TypeScript. Don't fix any violations yet — just set up the config.
+```
 
 Let Claude Code:
 - Install eslint and relevant plugins

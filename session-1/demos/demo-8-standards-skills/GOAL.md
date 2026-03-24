@@ -21,18 +21,19 @@ npm install
 
 Use this prompt:
 
-> Analyze this codebase and describe the de facto coding conventions. Look at:
-> - Naming conventions (camelCase, snake_case, PascalCase — where is each used?)
-> - Indentation and formatting (spaces vs tabs, semicolons vs no semicolons)
-> - Module system (require vs import, module.exports vs export)
-> - TypeScript patterns (how `any` is used, type annotations, strict mode)
-> - Error handling patterns (try/catch, callbacks, .catch, error middleware)
-> - Variable declarations (var vs let vs const)
-> - Comment styles and documentation patterns
-> - File naming conventions
-> - API response formats
->
-> Don't judge — just describe what exists. I want to understand the current state before deciding what to change.
+```
+Analyze this codebase and describe the de facto coding conventions. Look at:
+- Naming conventions (camelCase, snake_case, PascalCase — where is each used?)
+- Indentation and formatting (spaces vs tabs, semicolons vs no semicolons)
+- Module system (require vs import, module.exports vs export)
+- TypeScript patterns (how `any` is used, type annotations, strict mode)
+- Error handling patterns (try/catch, callbacks, .catch, error middleware)
+- Variable declarations (var vs let vs const)
+- Comment styles and documentation patterns
+- File naming conventions
+- API response formats
+Don't judge — just describe what exists. I want to understand the current state before deciding what to change.
+```
 
 ### Step 2: Review the Analysis
 

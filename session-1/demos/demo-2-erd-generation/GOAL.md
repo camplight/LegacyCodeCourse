@@ -24,14 +24,16 @@ npm run seed
 
 Use this prompt (or similar):
 
-> Generate a script called `generate-erd.js` that reads the SQLite database schema and outputs a Mermaid ERD diagram. It should:
-> - Connect to `bugbase.db` using better-sqlite3
-> - Read table definitions from `sqlite_master`
-> - Use `PRAGMA table_info(tablename)` to get columns and types
-> - Use `PRAGMA foreign_key_list(tablename)` to get foreign key relationships
-> - Output valid Mermaid `erDiagram` syntax to stdout
-> - Include column names and types in each entity
-> - Show all relationships with proper cardinality
+```
+Generate a script called `generate-erd.js` that reads the SQLite database schema and outputs a Mermaid ERD diagram. It should:
+- Connect to `bugbase.db` using better-sqlite3
+- Read table definitions from `sqlite_master`
+- Use `PRAGMA table_info(tablename)` to get columns and types
+- Use `PRAGMA foreign_key_list(tablename)` to get foreign key relationships
+- Output valid Mermaid `erDiagram` syntax to stdout
+- Include column names and types in each entity
+- Show all relationships with proper cardinality
+```
 
 ### Step 2: Run the Generated Tool
 

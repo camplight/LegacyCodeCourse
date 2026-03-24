@@ -21,16 +21,18 @@ npm install
 
 Use this prompt:
 
-> Generate a script called `visualize-webpack.js` that reads the webpack configuration at `client/webpack.config.js` and outputs a Mermaid flowchart diagram. It should visualize:
-> - Entry points and what files they reference
-> - Loader rules (what file types each loader handles)
-> - Plugins and what they do
-> - Output configuration
-> - Split chunks / code splitting setup
-> - Dev server proxy configuration
-> - Path aliases
->
-> Output valid Mermaid `flowchart TD` syntax to stdout.
+```
+Generate a script called `visualize-webpack.js` that reads the webpack configuration at `client/webpack.config.js` and outputs a Mermaid flowchart diagram. It should visualize:
+- Entry points and what files they reference
+- Loader rules (what file types each loader handles)
+- Plugins and what they do
+- Output configuration
+- Split chunks / code splitting setup
+- Dev server proxy configuration
+- Path aliases
+
+Output valid Mermaid `flowchart TD` syntax to stdout.
+```
 
 ### Step 2: Run the Generated Tool
 

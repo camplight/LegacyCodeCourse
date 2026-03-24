@@ -23,7 +23,9 @@ rm -rf node_modules
 
 Use this prompt:
 
-> I just cloned this project. Help me set up the dev environment and get the application running.
+```
+I just cloned this project. Help me set up the dev environment and get the application running.
+```
 
 ### Step 2: Observe How Claude Code Works
 

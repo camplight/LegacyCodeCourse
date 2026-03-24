@@ -23,14 +23,16 @@ npm install
 
 Use this prompt (or similar):
 
-> Generate a script called `evaluate-tests.js` that analyzes the test suite of this project. It should:
-> - Find all test files in the project
-> - Map which source files have corresponding tests and which don't
-> - Detect the test framework and check its configuration
-> - Find skipped/pending tests
-> - Count test cases per file
-> - Check for coverage configuration
-> - Output a structured JSON report to stdout
+```
+Generate a script called `evaluate-tests.js` that analyzes the test suite of this project. It should:
+- Find all test files in the project
+- Map which source files have corresponding tests and which don't
+- Detect the test framework and check its configuration
+- Find skipped/pending tests
+- Count test cases per file
+- Check for coverage configuration
+- Output a structured JSON report to stdout
+```
 
 Let Claude Code explore the codebase and generate the script.
 

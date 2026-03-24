@@ -21,17 +21,18 @@ npm install
 
 Use this prompt:
 
-> Generate a script called `evaluate-observability.js` that analyzes the observability posture of this codebase. It should scan for:
-> - Logging library usage (morgan, winston, pino, console.log, etc.)
-> - Log levels used (info, warn, error, debug)
-> - Whether logging is structured (JSON) or unstructured (plain text)
-> - Correlation ID / request ID patterns
-> - Health check endpoints and what they check
-> - Metrics endpoints or instrumentation
-> - Error handling patterns (try/catch, error middleware, unhandled rejection handlers)
-> - Console.log/console.error usage (count and locations)
->
-> Output a structured JSON report to stdout.
+```
+Generate a script called `evaluate-observability.js` that analyzes the observability posture of this codebase. It should scan for:
+- Logging library usage (morgan, winston, pino, console.log, etc.)
+- Log levels used (info, warn, error, debug)
+- Whether logging is structured (JSON) or unstructured (plain text)
+- Correlation ID / request ID patterns
+- Health check endpoints and what they check
+- Metrics endpoints or instrumentation
+- Error handling patterns (try/catch, error middleware, unhandled rejection handlers)
+- Console.log/console.error usage (count and locations)
+Output a structured JSON report to stdout.
+```
 
 ### Step 2: Run the Generated Tool
 

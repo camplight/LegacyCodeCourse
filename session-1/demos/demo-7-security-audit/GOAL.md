@@ -40,10 +40,13 @@ Observe the output:
 
 Use this prompt:
 
-> I just ran `npm audit` and got these results. Help me:
-> 1. Prioritize which vulnerabilities to fix first based on actual exploitability in this codebase
-> 2. Identify which can be fixed with simple version bumps vs. which require code changes
-> 3. Also scan the source code for security issues that `npm audit` wouldn't catch
+```
+I just ran `npm audit` and got these results. Help me:
+
+  1. Prioritize which vulnerabilities to fix first based on actual exploitability in this codebase
+  2. Identify which can be fixed with simple version bumps vs. which require code changes
+  3. Also scan the source code for security issues that `npm audit` wouldn't catch
+```
 
 ### Step 3: Observe AI's Code-Level Findings
 
