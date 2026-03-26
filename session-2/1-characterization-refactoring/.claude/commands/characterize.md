@@ -33,6 +33,7 @@ Do not modify production code.
 ### 3. Behavior Catalog (before writing any tests)
 
 For each entry point, list:
+
 - Happy-path behavior
 - Edge/boundary behavior (systematically derived from conditionals, switch
   statements, type guards, and default branches in the code)
