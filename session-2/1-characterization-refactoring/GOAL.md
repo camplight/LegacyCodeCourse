@@ -24,6 +24,8 @@ The `flight-booking-api.ts` file is intentionally messy legacy code (~600 lines)
 **What are characterization tests?**
 Tests that document the EXISTING behavior of legacy code without changing it. They answer: "What does this code actually do right now?"
 
+Prompt: `/characterize the /flights endpoint`
+
 ### Tasks:
 
 1. **Explore the API** - use curl/Postman to understand what it does
@@ -45,6 +47,8 @@ Tests that document the EXISTING behavior of legacy code without changing it. Th
 ## Goal 2: AI-Assisted Refactoring (AI Exercise)
 
 Once characterization tests are in place and passing, use AI to refactor.
+
+Prompt: `Refactor the flights endpoint towards hexagonal architecture. Do not touch the tests!`
 
 ### Tasks:
 
