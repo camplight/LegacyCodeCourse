@@ -17,11 +17,7 @@ Same as Demo 3 — git history must be generated.
 ### Step 1: Generate the Coupling Analyzer
 
 ```
-Create a script that analyzes the import dependencies between all
-TypeScript source files. For each module, calculate afferent coupling
-(how many modules depend on it), efferent coupling (how many modules
-it depends on), and instability (Ce / (Ca + Ce)). Output a table and
-a Mermaid dependency diagram. Save it as scripts/analyze-coupling.js
+Create a script that analyzes the import dependencies between all TypeScript source files. For each module, calculate afferent coupling (how many modules depend on it), efferent coupling (how many modules it depends on), and instability (Ce / (Ca + Ce)). Output a table and a Mermaid dependency diagram. Save it as scripts/analyze-coupling.js
 ```
 
 Run it and discuss:
@@ -33,12 +29,7 @@ Run it and discuss:
 ### Step 2: Generate the Migration Planner
 
 ```
-Create a script that recommends a phased migration plan for
-modularizing this codebase. Combine the coupling analysis with
-the hotspot data from our other analysis scripts. Group modules
-into phases: quick wins first (stable, low coupling), then
-high-value targets, then the tangled core last.
-Save it as scripts/plan-migration.js
+Create a script that recommends a phased migration plan for modularizing this codebase. Combine the coupling analysis with the hotspot data from our other analysis scripts. Group modules into phases: quick wins first (stable, low coupling), then high-value targets, then the tangled core last. Save it as scripts/plan-migration.js
 ```
 
 Run it and discuss the phased plan:
@@ -61,8 +52,7 @@ Key questions:
 If time allows, pick the first recommended step:
 
 ```
-Extract doctor-schedule.ts into a fully independent module with
-a clean public API. Make sure nothing breaks.
+Extract doctor-schedule.ts into a fully independent module with a clean public API. Make sure nothing breaks.
 ```
 
 ## Expected Coupling Diagram (Mermaid)
