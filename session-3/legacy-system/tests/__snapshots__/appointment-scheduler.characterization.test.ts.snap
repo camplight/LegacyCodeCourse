@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`POST /api/appointments response shape snapshot (normalized) 1`] = `
+{
+  "data": {
+    "billingId": "inv_ID",
+    "createdAt": "TIMESTAMP",
+    "date": "2028-06-14",
+    "doctorId": "doc_ID",
+    "duration": 45,
+    "id": "apt_ID",
+    "notes": "First visit",
+    "patientId": "pat_ID",
+    "reminderSent": false,
+    "status": "scheduled",
+    "time": "14:00",
+    "type": "consultation",
+  },
+  "success": true,
+}
+`;
