@@ -2,99 +2,59 @@
 
 ## Scenario
 
-Product wants **notification preferences** — patients should choose how they're notified about appointments:
-- Email only
-- SMS only
-- Both email and SMS
-- None (opt out)
+Product wants **notification preferences** — patients should choose how they're notified about appointments (email, SMS, both, or none).
 
-The feature naturally touches `notification-service.ts`, but this module is **too risky to refactor right now**:
-
-- 0% test coverage
-- 18 commits, 10 of which were bug fixes (55% bug ratio — highest in the system)
-- Random failure simulation (`Math.random() < 0.1`)
-- Hardcoded SMTP credentials
-- No error handling, no retry logic
+The feature naturally touches `notification-service.ts`, but this module is **too risky to refactor right now** (0% test coverage, 55% bug ratio — highest in the system, random failures, hardcoded credentials).
 
 ## Approach: Sprout Class Pattern
 
 When you **can't** refactor, use an isolation pattern from session-2:
 
 1. **Analyze** the risky module — understand why it's dangerous to touch
-2. **Choose** the right isolation pattern (Sprout Class fits perfectly here)
+2. **Choose** the right isolation pattern
 3. **Build** the new functionality in a clean, well-tested new module
-4. **Integrate** with a single, minimal touchpoint in the existing code
+4. **Integrate** with a single, minimal touchpoint
 
 ## Steps
 
 ### Step 1: Explore and Assess Risk
 
-Ask Claude Code to analyze `notification-service.ts`:
-
 ```
-Read src/notification-service.ts and assess:
-- Why is this module risky to modify? (Consider: test coverage, bug ratio, hardcoded values)
-- What are the failure modes? (Random failures, missing error handling)
-- Where would notification preferences naturally integrate?
-- What's the minimal change needed to add preference checking?
+I need to add notification preferences to this system. Look at the notification service and tell me - should I refactor it first, or is that too risky?
 ```
 
-**Discussion point:** Given 0% coverage and 55% bug ratio, would you refactor this first? What's the risk?
+**What the AI should surface on its own:** The 0% coverage, the `Math.random()` failure simulation, the hardcoded SMTP credentials, the complete lack of error handling. It should conclude that modifying this module directly is high-risk.
+
+**Discussion point:** Given 0% coverage and 55% bug ratio, would you refactor this first? What could go wrong?
 
 ### Step 2: Choose the Pattern
 
-Discuss why Sprout Class is the right pattern here:
+Discuss with the audience (or let the AI suggest):
 
-- **Sprout Class:** Create a brand-new module (`notification-preferences.ts`) that handles ALL preference logic. The legacy module only needs ONE new call — "should I send to this patient?"
-- **Why not Wrap Class?** We're not modifying the existing behavior, just adding a routing layer before it.
-- **Why not Branch by Abstraction?** Too heavy — we don't need to replace the notification service, just add preference filtering.
+```
+What's the safest way to add notification preferences without modifying the notification service at all?
+```
+
+**What the AI should recommend:** A Sprout Class pattern — build a new independent module for preferences, integrate at a single point. It might also mention Wrap Class or Branch by Abstraction; use that as a teaching moment for why Sprout Class is the best fit here.
 
 ### Step 3: TDD the Notification Preference Manager
 
-Ask Claude Code to build the new module with tests first:
-
 ```
-Create a new module src/notification-preferences.ts using TDD.
-This is a Sprout Class — it should be completely independent of
-notification-service.ts.
-
-The module should:
-1. Store notification preferences per patient (email, sms, both, none)
-2. Default to 'both' for patients without a preference set
-3. Provide a function to check if a specific channel should be used
-4. Provide a function to get a patient's preference
-5. Provide a function to set a patient's preference
-
-Write the tests first in tests/notification-preferences.test.ts,
-then implement the module.
+Build a notification preferences module using TDD. It should be completely independent of the existing notification service. Patients can choose: email only, SMS only, both, or none. Use TDD (tests first, then make them pass).
 ```
+
+**What the AI should handle:** Designing the API (get/set preferences, check if a channel should be used, default to "both"), writing tests first, then implementing. Let it decide the function signatures and data storage approach.
 
 ### Step 4: Integrate with Minimal Change
 
-The integration point should be ONE function call. Ask Claude Code:
-
 ```
-Add notification preference checking to the appointment scheduling flow.
-
-The change should be minimal:
-- In appointment-scheduler.ts, before calling notification functions,
-  check the patient's notification preferences
-- If preference is 'none', skip notifications entirely
-- If preference is 'email', only send email
-- If preference is 'sms', only send SMS
-- If preference is 'both' (default), send both as today
-
-This should be 5-10 lines of change at most, in one location.
-Do NOT modify notification-service.ts at all.
+Now integrate notification preferences into the appointment flow.
+Do not modify notification-service.ts — that's the risky module we're avoiding.
 ```
 
-Also add an API endpoint for managing preferences:
+**What the AI should figure out:** That the integration point is in `appointment-scheduler.ts` (where notifications are triggered), and that it needs to check preferences before calling the send functions. It should also add API endpoints for managing preferences.
 
-```
-Add these routes to server.ts:
-- GET /api/patients/:id/notification-preferences
-- PUT /api/patients/:id/notification-preferences
-```
+**Verification moment:** Run `git diff src/notification-service.ts` at the end — it should show nothing. That's the payoff.
 
 ## Expected Results
 

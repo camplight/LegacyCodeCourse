@@ -2,13 +2,7 @@
 
 ## Scenario
 
-Product wants **recurring appointments** — patients should be able to book weekly checkups, monthly follow-ups, etc. The feature naturally belongs in `appointment-scheduler.ts`, which is the messiest module in the entire system:
-
-- ~230 lines, complexity 20
-- 0% test coverage
-- 22 commits, 8 of which were bug fixes (36% bug ratio)
-- Handles validation, conflict detection, billing integration, notification sending, and caching — all in one file
-- Global mutable state, deep nesting, duplicated logic
+Product wants **recurring appointments** — patients should be able to book weekly checkups, monthly follow-ups, etc. The feature naturally belongs in `appointment-scheduler.ts`, which is the messiest module in the entire system (0% test coverage, 22 commits, 8 bug fixes). Handles validation, conflict detection, billing integration, notification sending, and caching — all in one file. Global mutable state, deep nesting, duplicated logic
 
 ## Approach: Characterize → Refactor → TDD
 
@@ -24,76 +18,50 @@ AI accelerates every step.
 
 ### Step 1: Explore the Code
 
-Ask Claude Code to read and analyze `appointment-scheduler.ts`:
+```
+We need to add a "recurring appointments" feature to this system.
+Before we start, review the appointment scheduling code and tell me what I'm dealing with. How bad is it?
+```
 
-```
-Read src/appointment-scheduler.ts and identify:
-- All distinct responsibilities this module handles
-- Where validation logic is duplicated
-- All external dependencies (imports from other modules)
-- Global mutable state
-- Magic numbers
-```
+**What the AI should surface on its own:** The multiple responsibilities crammed into one file, duplicated validation, global mutable state, tight coupling to billing and notifications, magic numbers. If it doesn't flag something, ask a follow-up — but let it lead.
 
 **Discussion point:** How many responsibilities does this one file have? What would "clean" look like?
 
 ### Step 2: Write Characterization Tests
 
-Ask Claude Code to generate black-box HTTP tests using Supertest that capture the current behavior of the appointment scheduling system. These tests should cover:
-
-- **Happy paths:** Create appointment, reschedule, cancel, complete, mark no-show
-- **Validation:** Missing patient, missing doctor, past date, invalid type, invalid duration, outside business hours
-- **Conflict detection:** Double-booking a doctor, double-booking a patient, emergency override
-- **Edge cases:** Cancel already-cancelled appointment, reschedule completed appointment
+Use the `/characterize` slash command (copied from session 2):
 
 ```
-Write characterization tests for the appointment scheduling API endpoints.
-Use Supertest against the Express app. The tests should capture CURRENT
-behavior — don't fix bugs, just document what the system does today.
-
-Before each test, you'll need to:
-1. Reset all data stores (_resetAppointmentData, _resetPatientData, etc.)
-2. Create test doctors with schedules
-3. Create test patients
-
-Cover: create, reschedule, cancel, complete, no-show, conflicts, validation.
+/characterize the appointment scheduling API endpoints (use Supertest)
 ```
 
-**Goal:** These tests are your safety net. Every test should pass before AND after refactoring.
+This runs our structured characterization testing workflow: it catalogs entry points by risk, traces data flows, documents behavior (including bugs), and writes tests that lock current behavior. The command handles test design rules, nondeterminism control, and sensitivity checks.
+
+**Goal:** Every characterization test passes. This is the safety net for refactoring.
 
 ### Step 3: Refactor
 
-With characterization tests in place, ask Claude Code to refactor `appointment-scheduler.ts`:
+With characterization tests in place:
 
 ```
-Refactor appointment-scheduler.ts by extracting these concerns into
-separate functions (keep them in the same file for now):
-
-1. Appointment validation (date, time, type, duration, business hours)
-2. Conflict detection (doctor conflicts, patient conflicts, emergency override)
-3. Billing integration (create invoice, cancel invoice, update invoice)
-4. Notification dispatch (confirmation, cancellation)
-
-Keep all characterization tests green after each extraction.
+Now refactor appointment-scheduler.ts to separate its concerns.
+Extract into well-named functions but keep everything in the same file.
+Keep all characterization tests green after each change.
 ```
 
-**Key principle:** Small, incremental extractions. Run tests after each change.
+**What the AI should do:** Identify the extraction boundaries itself — validation logic, conflict detection, billing integration, notification dispatch. The key principle is small, incremental extractions with tests running after each one.
+
+If it tries to do everything at once, steer it: *"Do one extraction at a time and run tests between each."*
 
 ### Step 4: TDD the Recurring Appointments Feature
 
-Now write tests FIRST for the new feature, then implement:
+Now the code is clean enough to add the feature properly:
 
 ```
-Write tests for a new "recurring appointments" feature:
-- Create a recurring appointment (weekly for 4 weeks)
-- Create a recurring appointment (monthly for 3 months)
-- Cancel a single occurrence (others remain)
-- Cancel the entire series
-- Conflict detection for recurring appointments
-- Skip dates that fall on days the doctor doesn't work
-
-Then implement the feature to make all tests pass.
+Add recurring appointments — patients should be able to book weekly or monthly repeating appointments. Write the tests first, then implement to make them pass.
 ```
+
+**What the AI should handle:** Designing the test cases (create series, cancel single occurrence vs. whole series, conflict detection across occurrences, skipping days the doctor doesn't work) and then implementing the feature.
 
 ## Expected Results
 
